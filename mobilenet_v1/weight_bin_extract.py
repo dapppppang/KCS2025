@@ -7,27 +7,46 @@ print(device)
 
 # Load the pre-trained model
 model = MobileNetV1(num_classes=10).to(device)
-model.load_state_dict(torch.load('weight_binary_files/fp32/model_fp32_parameters.pth'))
+model.load_state_dict(torch.load('weight_binary_files/fixed32/model_fixed32_parameters.pth'))
 
 # Filter and save weights only
 weights = {k: v for k, v in model.state_dict().items() if 'weight' in k}
-torch.save(weights, 'weight_binary_files/fp32/model_fp32_weights.pth')
+torch.save(weights, 'weight_binary_files/fixed32/model_fixed32_weights.pth')
 print('Model weights saved.\n')
 
 # Reload the saved weights for extraction
-weight_pth = torch.load('weight_binary_files/fp32/model_fp32_weights.pth')
+weight_pth = torch.load('weight_binary_files/fixed32/model_fixed32_weights.pth')
+
+# fixed32 형식으로 변환하는 함수
+
+# def float_to_fixed32(tensor, scale_factor):
+#     return (tensor * scale_factor).round().to(torch.int32)  # round() 추가
+
+# Fixed point 변환 함수
+def float_to_fixed32(tensor, fraction_bits=16, total_bits=32):
+    for value in tensor.flatten():
+        scale = 2 ** fraction_bits
+        max_val = (2 ** (total_bits - 1) - 1) / scale
+        min_val = -(2 ** (total_bits - 1)) / scale
+        fixed_value = np.round(value * scale)
+        fixed_value = np.clip(fixed_value, min_val * scale, max_val * scale)
+
+        return fixed_value / scale
 
 def save_weights_as_bin(param, layer_name):
-    """Converts weights to binary format (fp16) and saves to a .bin file."""
-    flattened_tensor = param.flatten().cpu().numpy()
-    float32_value = np.float32(flattened_tensor)
+    """Converts weights to binary format (fixed32) and saves to a .bin file."""
+    scale_factor = 2**16
+    flattened_tensor = param.flatten()
+    fixed32_value = float_to_fixed32(flattened_tensor, scale_factor).cpu().numpy()
 
+    # Convert each int32 element to binary string representation
     flattened_numpy_bin = [
-        f"{np.frombuffer(float32_value[i].tobytes(), dtype=np.uint32)[0]:032b}"
-        for i in range(len(float32_value))
+        f"{np.frombuffer(fixed32_value[i].tobytes(), dtype=np.uint32)[0]:032b}"
+        for i in range(len(fixed32_value))
     ]
 
-    with open(f'weight_binary_files/fp32/{layer_name}_weight_bin.bin', 'w') as f:
+    # Save the binary values to a file
+    with open(f'weight_binary_files/fixed32/{layer_name}_weight_bin.bin', 'w') as f:
         for b in flattened_numpy_bin:
             f.write(b + '\n')
 
@@ -37,22 +56,15 @@ for name, param in model.named_parameters():
         layer_num = name.split('.')[0].replace('conv', '')  # Extract conv layer number correctly
         save_weights_as_bin(param.data, f'dwcv{layer_num}')  # Call function to save weights as binary
 
-
 # 검증을 위해 float32 숫자를 직접 출력해보자
-
-# .pth 파일 경로
-path = 'weight_binary_files/fp32/model_fp32_weights.pth'  # 실제 파일 경로로 변경하세요
+path = 'weight_binary_files/fixed32/model_fixed32_weights.pth'
 checkpoint = torch.load(path)
 
 # state_dict 추출
-if "state_dict" in checkpoint:  # checkpoint가 'state_dict' 형태일 경우
-    state_dict = checkpoint["state_dict"]
-else:                           # checkpoint가 바로 state_dict인 경우
-    state_dict = checkpoint
+state_dict = checkpoint["state_dict"] if "state_dict" in checkpoint else checkpoint
 
 # depthwise 가중치 출력
 for layer_name, weights in state_dict.items():
-    if 'depthwise' in layer_name and 'weight' in layer_name:  # depthwise 레이어의 가중치만 필터링
+    if 'depthwise' in layer_name and 'weight' in layer_name:
         print(f"Layer: {layer_name} | Shape: {weights.shape}")
-        #print(f'{weights.to(float32):.9f}')  # depthwise 가중치 텐서를 출력
-        print(weights)  # depthwise 가중치 텐서를 출력
+        print(weights/(2**16))  # depthwise 가중치 텐서를 출력
