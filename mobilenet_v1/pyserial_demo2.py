@@ -39,7 +39,8 @@ def uart_setup():
 def send_weight(ser, pth):
     # .bin 파일을 열어서 한 줄씩 읽기
     with open(f'{pth}', 'r') as f:  # 파일 경로는 실제 경로로 수정
-        num_of_byte_sent = 0
+        num_of_transmission = 0
+        size_of_byte_sent=0
 
         for line in f:
             # 줄 끝의 \n을 제거하고 바이트로 변환하여 전송
@@ -47,10 +48,13 @@ def send_weight(ser, pth):
             byte_data = weight.encode('utf-8')  # 문자열을 바이트로 인코딩     # str 타입의 문자열을 utf-8 방식으로 인코딩해서 바이트로 변환한다
             ser.write(byte_data)                # 바이트 데이터 전송
             ser.flush()  # 송신 버퍼가 비워질 때까지 대기
-            num_of_byte_sent += 1       # 전송한 횟수 누적
+
+            num_of_transmission += 1       # 전송한 횟수 누적
+            size_of_byte_sent += len(byte_data)       # 전송한 횟수 누적
 
     print("weight 데이터 송신 완료! >_<")
-    print(f"number of transmissions : {num_of_byte_sent}\n")
+    print(f"number of transmissions : {num_of_transmission} 번")
+    print(f"number of total byte size : {size_of_byte_sent} bytes\n")
 
 # ------------------------------------------------------------------------------------------------------------------------------
 # 데이터 송신 함수 (python -> FPGA)
@@ -78,16 +82,21 @@ def send_tensor(ser, tensor, data_type):
         binary_array.append(binary_data)
 
     # 비트 문자열을 바이트로 변환하여 UART 전송
-    num_of_byte_sent = 0
+    num_of_transmission = 0
+    size_of_byte_sent = 0
 
     for binary_str in binary_array:
         # 비트 문자열을 바이트로 변환
         byte_to_send = int(binary_str, 2).to_bytes(4, byteorder='big')  # 4바이트로 변환
         ser.write(byte_to_send)
-        num_of_byte_sent += 1
+        ser.flush()  # 송신 버퍼가 비워질 때까지 대기
+
+        num_of_transmission += 1  # 전송한 횟수 누적
+        size_of_byte_sent += len(byte_to_send)  # 전송한 횟수 누적
 
     print("output tensor 송신 완료! >_<")
-    print(f"number of transmissions : {num_of_byte_sent}\n")
+    print(f"number of transmissions : {num_of_transmission} 번")
+    print(f"number of total byte size : {size_of_byte_sent} bytes\n")
 
 # ------------------------------------------------------------------------------------------------------------------------------
 # 데이터 수신 함수 (FPGA -> python)
