@@ -22,6 +22,11 @@ def save_weights_as_bin(param, layer_name):
     flattened_tensor = param.flatten().cpu().numpy()
     float32_value = np.float32(flattened_tensor)
 
+    # 검증을 위해 평탄화된 weight를 fp32 형태의 파일로 저장
+    with open(f'pyserial_demo/{layer_name}_weight_fp32.txt', 'w') as f:
+        for fp in float32_value:
+            f.write(str(fp) + '\n')
+
     flattened_numpy_bin = [
         f"{np.frombuffer(float32_value[i].tobytes(), dtype=np.uint32)[0]:032b}"
         for i in range(len(float32_value))
@@ -31,6 +36,7 @@ def save_weights_as_bin(param, layer_name):
         for b in flattened_numpy_bin:
             f.write(b + '\n')
 
+
 # Iterate through model parameters
 for name, param in model.named_parameters():
     if 'depthwise.weight' in name:
@@ -39,9 +45,7 @@ for name, param in model.named_parameters():
 
 
 # 검증을 위해 float32 숫자를 직접 출력해보자
-
-# .pth 파일 경로
-path = 'weight_binary_files/fp32/model_fp32_weights.pth'  # 실제 파일 경로로 변경하세요
+path = 'weight_binary_files/fp32/model_fp32_weights.pth'
 checkpoint = torch.load(path)
 
 # state_dict 추출
