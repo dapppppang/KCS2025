@@ -58,12 +58,20 @@ class MobileNetV1_with_pyserial(nn.Module):
         # UART PORT OPEN
         ser = uart_setup()
 
-        # SEND INSTRUCTION & WEIGHT TENSOR
-        ser.write(b'10101000')  # SEND INSTRUCTION
+        # SEND INSTRUCTION
+        instruction1 = 0b10101000
+        byte_to_send1 = instruction1.to_bytes(1, byteorder='big')  # 1바이트로 변환
+        ser.write(byte_to_send1)  # SEND INSTRUCTION (type : bytes)
+
+        # SEND WEIGHT TENSOR
         send_weight(ser, 'weight_binary_files/fp32/dwcv2_weight_bin.bin')  # SEND WEIGHT BINARY STRING DATA
 
-        # SEND INSTRUCTION & OUTPUT TENSOR
-        ser.write(b'00100000')
+        # SEND INSTRUCTION
+        instruction2 = 0b00100000
+        byte_to_send2 = instruction2.to_bytes(1, byteorder='big')  # 1바이트로 변환
+        ser.write(byte_to_send2)  # SEND INSTRUCTION (type : bytes)
+
+        # SEND OUTPUT TENSOR
         send_tensor(ser, x, torch.float32)
 
         # RECEIVE RESULT OF FPGA
