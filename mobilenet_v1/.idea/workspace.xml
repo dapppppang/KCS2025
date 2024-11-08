@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="27f54939-ad8f-42aa-bf11-3dfde6793ec8" name="Changes" comment="revised">
+      <change afterPath="$PROJECT_DIR$/tx_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_with_pyserial.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_with_pyserial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyserial_demo/dwcv2_weight_bin.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dapppppang&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/dapppppang/pyserial_demo2.git&quot;,
+    &quot;accountId&quot;: &quot;65225d88-71ab-463a-8b4e-4a0c26fe3747&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nPowclrCgaAyeyzI6sfY7rjh2D" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main.executor": "Debug",
+    "Python.main_experiment.executor": "Run",
+    "Python.pyserial_demo.executor": "Run",
+    "Python.pyserial_demo2.executor": "Debug",
+    "Python.pyserial_demo3.executor": "Run",
+    "Python.pyserial_rx_tx.executor": "Run",
+    "Python.train.executor": "Run",
+    "Python.tx_test.executor": "Run",
+    "Python.weight_bin_extract.executor": "Run",
+    "Python.weight_bin_extract_forbf16.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/workspace/kcs2024/mobilenet_v1/mobilenet_v1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1" />
+      <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1\weight_binary_files\fp32" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1\pyserial_demo" />
+      <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1\weight_binary_files\fp32" />
+      <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1\weight_binary_files\bf16" />
+      <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1\weight_binary_files\fp16" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="mobilenet_v1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pyserial_demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="mobilenet_v1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1\pyserial_demo\pyserial_demo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.pyserial_demo" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27f54939-ad8f-42aa-bf11-3dfde6793ec8" name="Changes" comment="" />
+      <created>1728884314122</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728884314122</updated>
+      <workItem from="1728884325337" duration="25037000" />
+      <workItem from="1728999055436" duration="524000" />
+      <workItem from="1728999975955" duration="92025000" />
+      <workItem from="1730775259391" duration="5099000" />
+      <workItem from="1730786732864" duration="56358000" />
+      <workItem from="1730984083928" duration="117000" />
+      <workItem from="1730984330155" duration="36659000" />
+    </task>
+    <task id="LOCAL-00001" summary="revised">
+      <option name="closed" value="true" />
+      <created>1730984491334</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730984491334</updated>
+    </task>
+    <task id="LOCAL-00002" summary="revised">
+      <option name="closed" value="true" />
+      <created>1730984525241</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730984525241</updated>
+    </task>
+    <task id="LOCAL-00003" summary="revised">
+      <option name="closed" value="true" />
+      <created>1730984979636</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730984979636</updated>
+    </task>
+    <task id="LOCAL-00004" summary="revised">
+      <option name="closed" value="true" />
+      <created>1730985055738</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730985055738</updated>
+    </task>
+    <task id="LOCAL-00005" summary="revised">
+      <option name="closed" value="true" />
+      <created>1731062856125</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731062856125</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="revised" />
+    <option name="LAST_COMMIT_MESSAGE" value="revised" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/weight_bin_extract_forbf16.py</url>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>142</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>135</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>150</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>156</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>127</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>119</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="data" language="Python" />
+        <watch expression="total_bytes" language="Python" />
+        <watch expression="weight" />
+        <watch expression="byte_data" language="Python" />
+        <watch expression="bit_pattern1" />
+        <watch expression="byte_to_send1" />
+        <watch expression="byte_str" />
+        <watch expression="formatted_output" />
+      </configuration>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="135">
+        <watch expression="chunk" language="Python" />
+      </inline-watch>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="121">
+        <watch expression="total_floats" />
+      </inline-watch>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="124">
+        <watch expression="total_bytes" />
+      </inline-watch>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="130">
+        <watch expression="bytes_received" language="Python" />
+      </inline-watch>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_rx_tx.coverage" NAME="pyserial_rx_tx Coverage Results" MODIFIED="1730733440263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$weight_bin_extract_forbf16.coverage" NAME="weight_bin_extract_forbf16 Coverage Results" MODIFIED="1730817066136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo2.coverage" NAME="pyserial_demo2 Coverage Results" MODIFIED="1731074640580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyserial_demo" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$weight_bin_extract.coverage" NAME="weight_bin_extract Coverage Results" MODIFIED="1730980079520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo.coverage" NAME="pyserial_demo Coverage Results" MODIFIED="1730710856204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$tx_test.coverage" NAME="tx_test Coverage Results" MODIFIED="1731051922926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo3.coverage" NAME="pyserial_demo3 Coverage Results" MODIFIED="1730710429811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$train.coverage" NAME="train Coverage Results" MODIFIED="1728884786235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$main.coverage" NAME="main Coverage Results" MODIFIED="1731040281154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$main_experiment.coverage" NAME="main_experiment Coverage Results" MODIFIED="1731072850686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
