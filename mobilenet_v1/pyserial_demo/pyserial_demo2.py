@@ -11,7 +11,7 @@ def uart_setup():
     # UART 통신 설정
     UART_PORT = 'COM3'  # 사용 중인 포트에 맞게 변경 (예: '/dev/ttyUSB0' 또는 'COM3')
     BAUD_RATE = 19200   # 보드레이트 설정
-    TIME_OUT = 1        # 타임아웃 설정
+    TIME_OUT = 14        # 타임아웃 설정
 
     # UART 연결 시도
     try:
@@ -45,8 +45,15 @@ def send_weight(ser, pth):
         for line in f:
             # 줄 끝의 \n을 제거하고 바이트로 변환하여 전송
             weight = line.strip()               # .strip()을 사용해 \n과 공백 제거
-            byte_data = weight.encode('utf-8')  # 문자열을 바이트로 인코딩     # str 타입의 문자열을 utf-8 방식으로 인코딩해서 바이트로 변환한다
-            ser.write(byte_data)                # 바이트 데이터 전송
+            byte_str = weight.encode('utf-8')  # 문자열을 바이트로 인코딩     # str 타입의 문자열을 utf-8 방식으로 인코딩해서 바이트로 변환한다
+
+            # 바이너리 문자열을 8비트씩 나누어 16진수로 변환
+            hex_values = [hex(int(byte_str[i:i + 8], 2)) for i in range(0, len(byte_str), 8)]
+
+            # '\x' 형식으로 변환
+            formatted_output = b''.join([bytes([int(val, 16)]) for val in hex_values])
+
+            ser.write(formatted_output)                # 바이트 데이터 전송
             ser.flush()  # 송신 버퍼가 비워질 때까지 대기
 
             # # 검증을 위해 binary로 변환된 weight 데이터를 파일로 저장
@@ -54,7 +61,7 @@ def send_weight(ser, pth):
             #     wb.write(str(byte_data) + '\n')
 
             num_of_transmission += 1       # 전송한 횟수 누적
-            size_of_byte_sent += int(len(byte_data)/8)      # 전송한 횟수 누적
+            size_of_byte_sent += len(formatted_output)      # 전송한 횟수 누적
 
     print("weight 데이터 송신 완료! >_<")
     print(f"number of transmissions : {num_of_transmission} 번")
@@ -74,11 +81,6 @@ def send_tensor(ser, tensor, data_type):
     # CPU로 이동 후 data_type으로 변환하여 NumPy 배열로 변환
     flattened_numpy = padded_tensor.flatten().to(data_type).cpu().numpy()
 
-    # # 검증을 위해 패딩 & 평탄화된 tensor 데이터를 파일로 저장
-    # with open(f'output_tensor_fp32.txt', 'w') as f:
-    #     for fp in flattened_numpy:
-    #         f.write(str(fp) + '\n')
-
     flattened_numpy_bin = [
         f"{np.frombuffer(flattened_numpy[i].tobytes(), dtype=np.uint32)[0]:032b}"
         for i in range(len(flattened_numpy))
@@ -91,15 +93,18 @@ def send_tensor(ser, tensor, data_type):
     for binary_str in flattened_numpy_bin:
         # 비트 문자열을 바이트로 변환
         byte_to_send = binary_str.encode('utf-8')  # 4바이트로 변환
-        ser.write(byte_to_send)
+
+        # 바이너리 문자열을 8비트씩 나누어 16진수로 변환
+        hex_values = [hex(int(byte_to_send[i:i + 8], 2)) for i in range(0, len(byte_to_send), 8)]
+
+        # '\x' 형식으로 변환
+        formatted_output = b''.join([bytes([int(val, 16)]) for val in hex_values])
+
+        ser.write(formatted_output)
         ser.flush()  # 송신 버퍼가 비워질 때까지 대기
 
-        # # 검증을 위해 tensor를 binary로 변환한 결과를 파일로 저장
-        # with open(f'output_tensor_bin.bin', 'a') as f:
-        #     f.write(str(byte_to_send) + '\n')
-
         num_of_transmission += 1  # 전송한 횟수 누적
-        size_of_byte_sent += int(len(byte_to_send)/8)  # 전송한 횟수 누적
+        size_of_byte_sent += len(formatted_output)  # 전송한 횟수 누적
 
     print("output tensor 송신 완료! >_<")
     print(f"number of transmissions : {num_of_transmission} 번")
@@ -116,14 +121,16 @@ def receive_data(ser, tensor_shape_tuple, data_type):
     total_bytes = int(total_floats * 4)  # float32는 4바이트
     print(f"총 받아야 하는 바이트 개수 : {total_bytes}")              # 32768 * 4 bytes = 131072 bytes
 
-    data = bytearray(total_bytes)
+    data = bytearray(total_bytes)       #객체 data를 생성해 수신할 데이터를 저장할 공간을 확보
 
     # bytes_received : 현재 받은 바이트 개수
     bytes_received = 0
 
     # 받아야 할 데이터를 모두 수신할 때까지 읽음
     while bytes_received < total_bytes:
-        chunk = ser.read(total_bytes - bytes_received)  # FPGA -> SW
+        byte_size_to_read = total_bytes - bytes_received
+        chunk = ser.read(byte_size_to_read)  # FPGA -> SW
+
         if not chunk:
             print("데이터 수신 중 오류 발생")
             break
@@ -144,18 +151,29 @@ def receive_data(ser, tensor_shape_tuple, data_type):
 
     # 텐서를 reshape하기 위해 shape tuple 사용
     tensor = torch.tensor(floats, dtype=data_type).reshape(tensor_shape_tuple)
+    print("tensor 수신 완료! >_<")
+
     return tensor
 
 
 # weight 데이터 송신 검증
 ser = uart_setup()          # UART PORT OPEN
-ser.write(b'10101000')      # SEND INSTRUCTION (type : bytes)
+
+bit_pattern1=0b10101000
+byte_to_send1 = bit_pattern1.to_bytes(1, byteorder='big')  # 1바이트로 변환
+ser.write(byte_to_send1)      # SEND INSTRUCTION (type : bytes)
+
 pth='../weight_binary_files/fp32/dwcv2_weight_bin.bin'
 send_weight(ser, pth)         # SEND WEIGHT BINARY STRING DATA
 
 # output tensor 데이터 송신 검증
 data_type = torch.float32
 output_tensor = torch.randn(1, 32, 32, 32, dtype=data_type)*2-1     # 검증을 위해 임의의 [1,32,32,32] 모양의 tensor 생성
+
+bit_pattern2=0b00100000
+byte_to_send2 = bit_pattern2.to_bytes(1, byteorder='big')  # 1바이트로 변환
+ser.write(byte_to_send2)      # SEND INSTRUCTION (type : bytes)
+
 send_tensor(ser, output_tensor, data_type)      # 데이터 송신
 
 # binary 데이터 수신 검증
@@ -164,6 +182,7 @@ tensor_data = receive_data(ser, tensor_shape_tuple, data_type)      # 데이터 
 
 # 검증을 위해 받은 binary 데이터를 tensor로 변환한 결과를 파일에 저장
 with open(f'received_tensor.txt', 'w') as f:
-    f.write(str(tensor_data) + '\n')
+    for tensor in tensor_data.flatten():
+        f.write(str(tensor) + '\n')
 
 print(tensor_data.size())      # 수신된 tensor 크기 출력
