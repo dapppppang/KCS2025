@@ -182,7 +182,6 @@ tensor_data = receive_data(ser, tensor_shape_tuple, data_type)      # 데이터 
 
 # 검증을 위해 받은 binary 데이터를 tensor로 변환한 결과를 파일에 저장
 with open(f'received_tensor.txt', 'w') as f:
-    for tensor in tensor_data.flatten():
-        f.write(str(tensor) + '\n')
+    f.write(str(tensor_data))
 
 print(tensor_data.size())      # 수신된 tensor 크기 출력
