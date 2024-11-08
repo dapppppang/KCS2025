@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from pyserial_demo2 import uart_setup, send_weight, send_tensor, receive_data
+from pyserial_demo.pyserial_demo2 import uart_setup, send_weight, send_tensor, receive_data
 
 
 class DepthwiseSeparableConv(nn.Module):
