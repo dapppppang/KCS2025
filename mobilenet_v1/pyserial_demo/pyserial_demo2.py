@@ -53,11 +53,8 @@ def send_weight(ser, pth):
             # '\x' 형식으로 변환
             formatted_output = b''.join([bytes([int(val, 16)]) for val in hex_values])
 
-            for i in range(0, 5, 1):
-                to_send=formatted_output[i:i+1]
-                ser.write(to_send)
-            # ser.write(formatted_output)                # 바이트 데이터 전송
-            # ser.flush()  # 송신 버퍼가 비워질 때까지 대기
+            ser.write(formatted_output)                # 바이트 데이터 전송
+            ser.flush()  # 송신 버퍼가 비워질 때까지 대기
 
             # # 검증을 위해 binary로 변환된 weight 데이터를 파일로 저장
             # with open(f'dwcv2_weight_bin.bin', 'a') as wb:
@@ -103,9 +100,8 @@ def send_tensor(ser, tensor, data_type):
         # '\x' 형식으로 변환
         formatted_output = b''.join([bytes([int(val, 16)]) for val in hex_values])
 
-        for i in range(0, 5, 1):
-            to_send = formatted_output[i:i + 1]
-            ser.write(to_send)
+        ser.write(formatted_output)
+        ser.flush()  # 송신 버퍼가 비워질 때까지 대기
 
         num_of_transmission += 1  # 전송한 횟수 누적
         size_of_byte_sent += len(formatted_output)  # 전송한 횟수 누적
@@ -187,6 +183,6 @@ tensor_data = receive_data(ser, tensor_shape_tuple, data_type)      # 데이터 
 # 검증을 위해 받은 binary 데이터를 tensor로 변환한 결과를 파일에 저장
 with open(f'received_tensor.txt', 'w') as f:
     for tensor in tensor_data.flatten():
-        f.write(f"{tensor}\n")
+        f.write(str(tensor) + '\n')
 
 print(tensor_data.size())      # 수신된 tensor 크기 출력
