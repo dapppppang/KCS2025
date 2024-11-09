@@ -76,6 +76,7 @@ class MobileNetV1_with_pyserial(nn.Module):
 
         # RECEIVE RESULT OF FPGA
         x = receive_data(ser, (1, 32, 32, 32), torch.float32)
+        ser.close()
 
         # Depthwise Separable Conv 레이어들
         x = self.conv2(x)
