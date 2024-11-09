@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # 학습된 모델 불러오기
     #model = MobileNetV1(num_classes=10).to(device)
     model = MobileNetV1_with_pyserial(num_classes=10).to(device)
-    model.load_state_dict(torch.load('weight_binary_files/fp32/model_fp32_parameters.pth'))   # 저장된 가중치 불러오기
+    model.load_state_dict(torch.load('weight_binary_files/fp32/model_fp32_parameters.pth'),strict=False)   # 저장된 가중치 불러오기
 
     # 데이터 로더 가져오기
     trainloader, testloader = get_dataloaders(batch_size=1)
