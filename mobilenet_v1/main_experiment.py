@@ -1,8 +1,8 @@
 # 앞서 저장된 모델을 이용해 추론하기
 
 import torch
-from model import MobileNetV1
-# from model_with_pyserial import MobileNetV1_with_pyserial
+#from model import MobileNetV1
+from model_with_pyserial import MobileNetV1_with_pyserial
 from dataset import get_dataloaders                                     # 데이터셋을 로드하고 훈련 및 테스트 데이터로 나누는 함수
 from evaluate import evaluate_model
 from sklearn.metrics import accuracy_score, classification_report       # 추론 성능 분석을 위한 정확도 및 분류 보고서를 제공하는 라이브러리
