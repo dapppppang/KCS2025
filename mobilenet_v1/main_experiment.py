@@ -1,7 +1,8 @@
 # 앞서 저장된 모델을 이용해 추론하기
 
 import torch
-from model_with_pyserial import MobileNetV1_with_pyserial
+from model import MobileNetV1
+# from model_with_pyserial import MobileNetV1_with_pyserial
 from dataset import get_dataloaders                                     # 데이터셋을 로드하고 훈련 및 테스트 데이터로 나누는 함수
 from evaluate import evaluate_model
 from sklearn.metrics import accuracy_score, classification_report       # 추론 성능 분석을 위한 정확도 및 분류 보고서를 제공하는 라이브러리
@@ -13,7 +14,7 @@ if __name__ == '__main__':
     print(device)
 
     # 학습된 모델 불러오기
-    model = MobileNetV1_with_pyserial(num_classes=10).to(device)
+    model = MobileNetV1(num_classes=10).to(device)
     model.load_state_dict(torch.load('weight_binary_files/fp32/model_fp32_parameters.pth'))   # 저장된 가중치 불러오기
 
     # 데이터 로더 가져오기
