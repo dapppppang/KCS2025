@@ -3,16 +3,18 @@ import torch.nn as nn
 from pyserial_demo.pyserial_demo2 import uart_setup, send_weight, send_tensor, receive_data
 
 
+
 class DepthwiseSeparableConv(nn.Module):
     def __init__(self, in_channels, out_channels, stride=1):
         super(DepthwiseSeparableConv, self).__init__()
-        # self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size=3, stride=stride, padding=1, groups=in_channels, bias=False)      # already done by FPGA
+        self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size=3, stride=stride, padding=1, groups=in_channels, bias=False)      # already done by FPGA
         self.pointwise = nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=1, padding=0, bias=False)
         self.bn = nn.BatchNorm2d(out_channels)
         self.relu = nn.ReLU(inplace=True)
 
-    def forward(self, x):
-        # x = self.depthwise(x)      # already done by FPGA
+    def forward(self, x, sw=True):
+        if sw:
+            x = self.depthwise(x)      # already done by FPGA
         x = self.pointwise(x)
         x = self.bn(x)
         return self.relu(x)
@@ -50,10 +52,12 @@ class MobileNetV1_with_pyserial(nn.Module):
         self.fc = nn.Linear(1024, num_classes)
 
     def forward(self, x):
+
         # 초기 Conv 레이어
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
+
 
         # UART PORT OPEN
         ser = uart_setup()
@@ -79,29 +83,44 @@ class MobileNetV1_with_pyserial(nn.Module):
         ser.close()
 
         # Depthwise Separable Conv 레이어들
-        x = self.conv2(x)
+        x = self.conv2(x, sw=False)
+        print("conv2!")
         x = self.conv3(x)
+        print("conv3!")
         x = self.conv4(x)
+        print("conv4!")
         x = self.conv5(x)
+        print("conv5!")
         x = self.conv6(x)
+        print("conv6!")
         x = self.conv7(x)
 
+        print("conv7!")
         # 반복되는 512 레이어들
         x = self.conv8(x)
+        print("conv8!")
         x = self.conv9(x)
+        print("conv9!")
         x = self.conv10(x)
+        print("conv10!")
         x = self.conv11(x)
+        print("conv11!")
         x = self.conv12(x)
+        print("conv12!")
 
         # 최종 Conv 레이어
         x = self.conv13(x)
+        print("conv13!")
         x = self.conv14(x)
+        print("conv14!")
 
         # 평균 풀링
         x = self.avg_pool(x)
+        print("avg_pool!")
 
         # 벡터화 및 FC 레이어로 연결
         x = x.view(x.size(0), -1)
         x = self.fc(x)
+        print("fc")
 
         return x
