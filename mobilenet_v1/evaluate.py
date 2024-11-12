@@ -15,10 +15,10 @@ def evaluate_model(model, dataloader, device):
             images = images.to(device)
             labels = labels.to(device)
 
-            # float32을 사용하여 추론 수행
-            with torch.cuda.amp.autocast(dtype=torch.float32):
-                outputs = model(images)
-                _, preds = torch.max(outputs, 1)
+            # # float32을 사용하여 추론 수행
+            # with torch.cuda.amp.autocast(dtype=torch.float32):
+            #     outputs = model(images)
+            #     _, preds = torch.max(outputs, 1)
 
 
             # autocast 제거 (양자화된 모델에는 필요하지 않음)
