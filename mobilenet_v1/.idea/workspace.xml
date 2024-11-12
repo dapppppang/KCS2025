@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27f54939-ad8f-42aa-bf11-3dfde6793ec8" name="Changes" comment="revised">
-      <change afterPath="$PROJECT_DIR$/tx_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_experiment.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model_with_pyserial.py" beforeDir="false" afterPath="$PROJECT_DIR$/model_with_pyserial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyserial_demo/dwcv2_weight_bin.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyserial_demo/pyserial_demo.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyserial_demo/received_tensor_answer.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,30 +53,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Debug",
-    "Python.main_experiment.executor": "Run",
-    "Python.pyserial_demo.executor": "Run",
-    "Python.pyserial_demo2.executor": "Debug",
-    "Python.pyserial_demo3.executor": "Run",
-    "Python.pyserial_rx_tx.executor": "Run",
-    "Python.train.executor": "Run",
-    "Python.tx_test.executor": "Run",
-    "Python.weight_bin_extract.executor": "Run",
-    "Python.weight_bin_extract_forbf16.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/workspace/kcs2024/mobilenet_v1/mobilenet_v1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.dataset.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.evaluate.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main_experiment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.model_with_pyserial.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pyserial_demo.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pyserial_demo2.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.pyserial_demo3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pyserial_rx_tx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tx_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.weight_bin_extract.executor&quot;: &quot;Run&quot;,
+    &quot;Python.weight_bin_extract_forbf16.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/workspace/kcs2024/mobilenet_v1/mobilenet_v1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1" />
@@ -86,7 +92,7 @@
       <recent name="D:\workspace\kcs2024\mobilenet_v1\mobilenet_v1\weight_binary_files\fp16" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="mobilenet_v1" />
       <option name="ENV_FILES" value="" />
@@ -162,7 +168,7 @@
       <workItem from="1730775259391" duration="5099000" />
       <workItem from="1730786732864" duration="56358000" />
       <workItem from="1730984083928" duration="117000" />
-      <workItem from="1730984330155" duration="36659000" />
+      <workItem from="1730984330155" duration="63306000" />
     </task>
     <task id="LOCAL-00001" summary="revised">
       <option name="closed" value="true" />
@@ -204,7 +210,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731062856125</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="revised">
+      <option name="closed" value="true" />
+      <created>1731075926489</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731075926489</updated>
+    </task>
+    <task id="LOCAL-00007" summary="revised">
+      <option name="closed" value="true" />
+      <created>1731075999707</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731075999707</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,57 +251,58 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo.py</url>
-          <line>32</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/weight_bin_extract_forbf16.py</url>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>142</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>135</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>141</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>150</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>156</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>127</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>9</line>
+          <line>11</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
-          <line>119</line>
+          <line>115</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_experiment.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_experiment.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_experiment.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dataset.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/dataset.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/evaluate.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/evaluate.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="63" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -293,31 +316,27 @@
         <watch expression="byte_to_send1" />
         <watch expression="byte_str" />
         <watch expression="formatted_output" />
+        <watch expression="data" />
+        <watch expression="data" />
       </configuration>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="135">
-        <watch expression="chunk" language="Python" />
-      </inline-watch>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="121">
-        <watch expression="total_floats" />
-      </inline-watch>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="124">
-        <watch expression="total_bytes" />
-      </inline-watch>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/pyserial_demo/pyserial_demo2.py" line="130">
-        <watch expression="bytes_received" language="Python" />
+      <inline-watch fileUrl="file://$PROJECT_DIR$/model.py" line="56">
+        <watch expression="x" />
       </inline-watch>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_rx_tx.coverage" NAME="pyserial_rx_tx Coverage Results" MODIFIED="1730733440263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mobilenet_v1$weight_bin_extract_forbf16.coverage" NAME="weight_bin_extract_forbf16 Coverage Results" MODIFIED="1730817066136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo2.coverage" NAME="pyserial_demo2 Coverage Results" MODIFIED="1731074640580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyserial_demo" />
-    <SUITE FILE_PATH="coverage/mobilenet_v1$weight_bin_extract.coverage" NAME="weight_bin_extract Coverage Results" MODIFIED="1730980079520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo.coverage" NAME="pyserial_demo Coverage Results" MODIFIED="1730710856204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mobilenet_v1$tx_test.coverage" NAME="tx_test Coverage Results" MODIFIED="1731051922926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$model_with_pyserial.coverage" NAME="model_with_pyserial Coverage Results" MODIFIED="1731321312637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$dataset.coverage" NAME="dataset Coverage Results" MODIFIED="1731305205995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo3.coverage" NAME="pyserial_demo3 Coverage Results" MODIFIED="1730710429811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mobilenet_v1$train.coverage" NAME="train Coverage Results" MODIFIED="1728884786235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mobilenet_v1$main.coverage" NAME="main Coverage Results" MODIFIED="1731040281154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mobilenet_v1$main_experiment.coverage" NAME="main_experiment Coverage Results" MODIFIED="1731072850686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_rx_tx.coverage" NAME="pyserial_rx_tx Coverage Results" MODIFIED="1730733440263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$weight_bin_extract_forbf16.coverage" NAME="weight_bin_extract_forbf16 Coverage Results" MODIFIED="1730817066136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$evaluate.coverage" NAME="evaluate Coverage Results" MODIFIED="1731322601169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo2.coverage" NAME="pyserial_demo2 Coverage Results" MODIFIED="1731305038190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyserial_demo" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$weight_bin_extract.coverage" NAME="weight_bin_extract Coverage Results" MODIFIED="1730980079520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$tx_test.coverage" NAME="tx_test Coverage Results" MODIFIED="1731051922926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$pyserial_demo.coverage" NAME="pyserial_demo Coverage Results" MODIFIED="1730710856204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mobilenet_v1$main_experiment.coverage" NAME="main_experiment Coverage Results" MODIFIED="1731324924041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -1,18 +1,20 @@
 import torch
 import torch.nn as nn
 from pyserial_demo.pyserial_demo2 import uart_setup, send_weight, send_tensor, receive_data
-
+import logging
 
 class DepthwiseSeparableConv(nn.Module):
     def __init__(self, in_channels, out_channels, stride=1):
         super(DepthwiseSeparableConv, self).__init__()
-        # self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size=3, stride=stride, padding=1, groups=in_channels, bias=False)      # already done by FPGA
+        self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size=3, stride=stride, padding=1, groups=in_channels, bias=False)      # already done by FPGA
         self.pointwise = nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=1, padding=0, bias=False)
         self.bn = nn.BatchNorm2d(out_channels)
         self.relu = nn.ReLU(inplace=True)
 
-    def forward(self, x):
-        # x = self.depthwise(x)      # already done by FPGA
+    def forward(self, x, sw=True):
+        if sw:
+            x = self.depthwise(x)      # already done by FPGA
+
         x = self.pointwise(x)
         x = self.bn(x)
         return self.relu(x)
@@ -55,30 +57,36 @@ class MobileNetV1_with_pyserial(nn.Module):
         x = self.bn1(x)
         x = self.relu(x)
 
-        # UART PORT OPEN
-        ser = uart_setup()
 
-        # SEND INSTRUCTION
-        instruction1 = 0b10101000
-        byte_to_send1 = instruction1.to_bytes(1, byteorder='big')  # 1바이트로 변환
-        ser.write(byte_to_send1)  # SEND INSTRUCTION (type : bytes)
+        # # 로깅 설정
+        # logging.basicConfig(level=logging.DEBUG, filename='depthwise1_log_2.txt', filemode='w')
+        # # 데이터 로깅
+        # logging.debug(f"\ndepthwise1_input_tensor : {x}")
+        #
+        # # UART PORT OPEN
+        # ser = uart_setup()
+        # # SEND INSTRUCTION1
+        # instruction1 = 0b10101000
+        # byte_to_send1 = instruction1.to_bytes(1, byteorder='big')  # 1바이트로 변환
+        # ser.write(byte_to_send1)  # SEND INSTRUCTION (type : bytes)
+        # # SEND WEIGHT TENSOR
+        # send_weight(ser, 'weight_binary_files/fp32/dwcv2_weight_bin.bin')  # SEND WEIGHT BINARY STRING DATA
+        # # SEND INSTRUCTION2
+        # instruction2 = 0b00100000
+        # byte_to_send2 = instruction2.to_bytes(1, byteorder='big')  # 1바이트로 변환
+        # ser.write(byte_to_send2)  # SEND INSTRUCTION (type : bytes)
+        # # SEND OUTPUT TENSOR
+        # send_tensor(ser, x, torch.float32)
+        # # RECEIVE RESULT OF FPGA
+        # x = receive_data(ser, (1, 32, 32, 32), torch.float32)
+        # ser.close()
+        #
+        # # 데이터 로깅
+        # logging.debug(f"\ndepthwise1_output_tensor : {x}")
 
-        # SEND WEIGHT TENSOR
-        send_weight(ser, 'weight_binary_files/fp32/dwcv2_weight_bin.bin')  # SEND WEIGHT BINARY STRING DATA
-
-        # SEND INSTRUCTION
-        instruction2 = 0b00100000
-        byte_to_send2 = instruction2.to_bytes(1, byteorder='big')  # 1바이트로 변환
-        ser.write(byte_to_send2)  # SEND INSTRUCTION (type : bytes)
-
-        # SEND OUTPUT TENSOR
-        send_tensor(ser, x, torch.float32)
-
-        # RECEIVE RESULT OF FPGA
-        x = receive_data(ser, (1, 32, 32, 32), torch.float32)
 
         # Depthwise Separable Conv 레이어들
-        x = self.conv2(x)
+        x = self.conv2(x, sw=True)
         x = self.conv3(x)
         x = self.conv4(x)
         x = self.conv5(x)
@@ -94,7 +102,36 @@ class MobileNetV1_with_pyserial(nn.Module):
 
         # 최종 Conv 레이어
         x = self.conv13(x)
-        x = self.conv14(x)
+
+
+        # 로깅 설정
+        logging.basicConfig(level=logging.DEBUG, filename='depthwise14_log.txt', filemode='w')
+        # 데이터 로깅
+        logging.debug(f"\ndepthwise14_input_tensor : {x}")
+
+        # UART PORT OPEN
+        ser = uart_setup()
+        # SEND INSTRUCTION1
+        instruction1 = 0b10101101
+        byte_to_send1 = instruction1.to_bytes(1, byteorder='big')  # 1바이트로 변환
+        ser.write(byte_to_send1)  # SEND INSTRUCTION (type : bytes)
+        # SEND WEIGHT TENSOR
+        send_weight(ser, 'weight_binary_files/fp32/dwcv14_weight_bin.bin')  # SEND WEIGHT BINARY STRING DATA
+        # SEND INSTRUCTION2
+        instruction2 = 0b00000101
+        byte_to_send2 = instruction2.to_bytes(1, byteorder='big')  # 1바이트로 변환
+        ser.write(byte_to_send2)  # SEND INSTRUCTION (type : bytes)
+        # SEND OUTPUT TENSOR
+        send_tensor(ser, x, torch.float32)
+        # RECEIVE RESULT OF FPGA
+        x = receive_data(ser, (1, 1024, 2, 2), torch.float32)
+        ser.close()
+
+        # 데이터 로깅
+        logging.debug(f"\ndepthwise14_output_tensor : {x}")
+
+
+        x = self.conv14(x,sw=False)
 
         # 평균 풀링
         x = self.avg_pool(x)
@@ -102,5 +139,7 @@ class MobileNetV1_with_pyserial(nn.Module):
         # 벡터화 및 FC 레이어로 연결
         x = x.view(x.size(0), -1)
         x = self.fc(x)
+        print("\ntest image 추론 완료! >_<")
+        print("========================================================\n")
 
         return x

@@ -1,5 +1,7 @@
 import torch
 from torch.cuda.amp import autocast
+from tqdm import tqdm
+from colorama import Fore
 
 # 모델 평가 함수 정의
 def evaluate_model(model, dataloader, device):
@@ -10,7 +12,7 @@ def evaluate_model(model, dataloader, device):
     model.eval()
 
     with torch.no_grad():
-        for images, labels in dataloader:
+        for images, labels in tqdm(dataloader, desc=Fore.GREEN+"test"):
             # device로 데이터 이동
             images = images.to(device)
             labels = labels.to(device)
@@ -19,7 +21,6 @@ def evaluate_model(model, dataloader, device):
             # with torch.cuda.amp.autocast(dtype=torch.float32):
             #     outputs = model(images)
             #     _, preds = torch.max(outputs, 1)
-
 
             # autocast 제거 (양자화된 모델에는 필요하지 않음)
             outputs = model(images)

@@ -11,12 +11,6 @@ class DepthwiseSeparableConv(nn.Module):
 
     def forward(self, x):
         x = self.depthwise(x)
-
-        # 검증을 위해 depthwise 결과 tensor를 파일로 저장
-        with open(f'pyserial_demo/received_tensor_answer.txt', 'w') as f:
-            for tensor in x.flatten():
-                f.write(f"{tensor}\n")
-
         x = self.pointwise(x)
         x = self.bn(x)
         return self.relu(x)

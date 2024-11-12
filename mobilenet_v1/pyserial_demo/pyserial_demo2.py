@@ -4,6 +4,8 @@ import torch.nn.functional as F
 import serial       # UART 통신을 시작하기 위해 시리얼 포트 열기
 import numpy as np
 import struct
+from tqdm.notebook import tqdm
+from colorama import Fore
 
 # ------------------------------------------------------------------------------------------------------------------------------
 # UART PORT OPEN 함수
@@ -26,7 +28,7 @@ def uart_setup():
         # 시리얼포트 접속
         ser.isOpen()
         # 시리얼포트 번호 출력
-        print(f"Connected to {ser.name}\n")
+        print(f"\nConnected to {ser.name}\n")
         return ser
 
     except serial.SerialException as e:
@@ -53,12 +55,9 @@ def send_weight(ser, pth):
             # '\x' 형식으로 변환
             formatted_output = b''.join([bytes([int(val, 16)]) for val in hex_values])
 
-            ser.write(formatted_output)                # 바이트 데이터 전송
-            ser.flush()  # 송신 버퍼가 비워질 때까지 대기
-
-            # # 검증을 위해 binary로 변환된 weight 데이터를 파일로 저장
-            # with open(f'dwcv2_weight_bin.bin', 'a') as wb:
-            #     wb.write(str(byte_data) + '\n')
+            for i in range(0, 5, 1):
+                to_send=formatted_output[i:i+1]
+                ser.write(to_send)
 
             num_of_transmission += 1       # 전송한 횟수 누적
             size_of_byte_sent += len(formatted_output)      # 전송한 횟수 누적
@@ -100,8 +99,9 @@ def send_tensor(ser, tensor, data_type):
         # '\x' 형식으로 변환
         formatted_output = b''.join([bytes([int(val, 16)]) for val in hex_values])
 
-        ser.write(formatted_output)
-        ser.flush()  # 송신 버퍼가 비워질 때까지 대기
+        for i in range(0, 5, 1):
+            to_send = formatted_output[i:i + 1]
+            ser.write(to_send)
 
         num_of_transmission += 1  # 전송한 횟수 누적
         size_of_byte_sent += len(formatted_output)  # 전송한 횟수 누적
@@ -156,33 +156,33 @@ def receive_data(ser, tensor_shape_tuple, data_type):
     return tensor
 
 
-# weight 데이터 송신 검증
-ser = uart_setup()          # UART PORT OPEN
-
-bit_pattern1=0b10101000
-byte_to_send1 = bit_pattern1.to_bytes(1, byteorder='big')  # 1바이트로 변환
-ser.write(byte_to_send1)      # SEND INSTRUCTION (type : bytes)
-
-pth='../weight_binary_files/fp32/dwcv2_weight_bin.bin'
-send_weight(ser, pth)         # SEND WEIGHT BINARY STRING DATA
-
-# output tensor 데이터 송신 검증
-data_type = torch.float32
-output_tensor = torch.randn(1, 32, 32, 32, dtype=data_type)*2-1     # 검증을 위해 임의의 [1,32,32,32] 모양의 tensor 생성
-
-bit_pattern2=0b00100000
-byte_to_send2 = bit_pattern2.to_bytes(1, byteorder='big')  # 1바이트로 변환
-ser.write(byte_to_send2)      # SEND INSTRUCTION (type : bytes)
-
-send_tensor(ser, output_tensor, data_type)      # 데이터 송신
-
-# binary 데이터 수신 검증
-tensor_shape_tuple = (1, 32, 32, 32)    # 수신될 텐서 형태 정의
-tensor_data = receive_data(ser, tensor_shape_tuple, data_type)      # 데이터 수신
-
-# 검증을 위해 받은 binary 데이터를 tensor로 변환한 결과를 파일에 저장
-with open(f'received_tensor.txt', 'w') as f:
-    for tensor in tensor_data.flatten():
-        f.write(str(tensor) + '\n')
-
-print(tensor_data.size())      # 수신된 tensor 크기 출력
+# # weight 데이터 송신 검증
+# ser = uart_setup()          # UART PORT OPEN
+#
+# bit_pattern1=0b10101000
+# byte_to_send1 = bit_pattern1.to_bytes(1, byteorder='big')  # 1바이트로 변환
+# ser.write(byte_to_send1)      # SEND INSTRUCTION (type : bytes)
+#
+# pth='../weight_binary_files/fp32/dwcv2_weight_bin.bin'
+# send_weight(ser, pth)         # SEND WEIGHT BINARY STRING DATA
+#
+# # output tensor 데이터 송신 검증
+# data_type = torch.float32
+# output_tensor = torch.randn(1, 32, 32, 32, dtype=data_type)*2-1     # 검증을 위해 임의의 [1,32,32,32] 모양의 tensor 생성
+#
+# bit_pattern2=0b00100000
+# byte_to_send2 = bit_pattern2.to_bytes(1, byteorder='big')  # 1바이트로 변환
+# ser.write(byte_to_send2)      # SEND INSTRUCTION (type : bytes)
+#
+# send_tensor(ser, output_tensor, data_type)      # 데이터 송신
+#
+# # binary 데이터 수신 검증
+# tensor_shape_tuple = (1, 32, 32, 32)    # 수신될 텐서 형태 정의
+# tensor_data = receive_data(ser, tensor_shape_tuple, data_type)      # 데이터 수신
+#
+# # 검증을 위해 받은 binary 데이터를 tensor로 변환한 결과를 파일에 저장
+# with open(f'received_tensor.txt', 'w') as f:
+#     for tensor in tensor_data.flatten():
+#         f.write(f"{tensor}\n")
+#
+# print(tensor_data.size())      # 수신된 tensor 크기 출력
